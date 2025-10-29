@@ -1,0 +1,37 @@
+import Users from "../models/User.model.js";
+
+
+class UserRepository{
+       static async createUser(name, email, password){
+        return await Users.insertOne({
+            name: name,
+            email: email, 
+            password: password
+        })
+       }
+
+    static async getAll (){
+        //.find es un metodo para hacer filtro en una coleccion
+        const users = await Users.find()
+        return users
+    }
+
+       static async deleteById(user_id){
+        Users.findByIdAndDelete(user_id)
+    return true
+       }
+       static async updateById (user_id, new_values){
+        const user_updated = await Users.findByIdAndUpdate(user_id, new_values,{
+            new:true
+        })
+        return user_updated
+       }
+
+       static async getByEmail(email){
+        const user = await Users.findOne({email:email})
+        return user
+       }
+}
+
+
+export default UserRepository

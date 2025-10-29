@@ -1,0 +1,11 @@
+<h1>Hola desde handlebear</h1>
+<h2>Tu nombre es {{name}}</h2>
+{{#if is_admin}}
+<button>borrar proyecto</button>
+{{else}}
+<button disabled> Borrar proyecto</button>
+{{/if }}
+{{#each workspaces}}
+    <h2>{{name}}</h2>
+    <a href="/workspace/{{_id}}">Ir a espacio de trabajo</a>
+    {{/each}}

@@ -67,6 +67,9 @@ const user = await UserRepository.getByEmail(email)
 if(!user){
     throw new ServerError(400, 'email, no registraro')
 }
+if(user.verified_email ===false){
+        throw new ServerError(400, 'email, no verificado')
+}
 const is_same_password = await bcrypt.compare(password, user.password)
 if(!is_same_password){
     throw new ServerError(400, 'contraseña incorrecta')
